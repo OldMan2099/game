@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!--Links-->
+
+    <link rel="stylesheet" href="botui-theme-default.css">
+    <link rel="stylesheet" href="botui.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="materialize.css">
+    <style type="text/css">
+        html,body {
+          font-family: 'Raleway', sans-serif;
+          padding: 10px;
+          font-size: 15px;
+          background: #222;
+          color: #aaa
+        }
+
+        h1,h2 {
+          font-weight: 200;
+          
+        }
+        h1 { }
+        h2 {
+          color: #888;
+          font-size: 15px;
+        }
+    </style>
+    <!--scripts-->
+
+
+</head>
+<script>function OnStart(){
+app.SetScreenMode( "Game" )
+app.SetOrientation( "Portait" );
+    }</script>
+<body onload="app.Start()">
+
+<h1>История:
+  <span
+     class="txt-rotate"
+     data-period="2000"
+     data-rotate='["Недалёкое будущее. Вы работаете на станции по связи Солнечной системы. В один из рабочих дней, вы проснулись, позавтракали и пошли на работу. Придя, с неохотой усевшись за рабочее кресло и включив компьютер, начали просматривать новые записи. И в бортовом журнале обнаружили одно новое письмо. Это было странно, так-как раньше по приходу на работу у вас небыло непрочитанных сообщений. Вы с любопытством, но в то же время и с опаской прочитали его. В нём было написано . Оно было отправлено со спутника юпитера Титан. По уставу вы не должны отвечать на сообщения отправленные с этого спутника, потому что на нём нет жизни уже 9 лет из-за выхода из строя воздушной системы. Но вы решили вступить в связь с отправителем."]'></span>
+</h1>
+<a class="waves-effect waves-light btn-large" href="game.html">Вперёд</a>
+
+<script type="text/javascript">
+    var TxtRotate = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+    };
+
+    TxtRotate.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+
+        if (this.isDeleting) {
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+        var that = this;
+        var delta = 130 - Math.random() * 150;
+
+        if (this.isDeleting) {
+            delta /= 2;
+        }
+
+
+
+        setTimeout(function() {
+            that.tick();
+        }, delta);
+    };
+
+    window.onload = function() {
+        var elements = document.getElementsByClassName('txt-rotate');
+        for (var i = 0; i < elements.length; i++) {
+            var toRotate = elements[i].getAttribute('data-rotate');
+            var period = elements[i].getAttribute('data-period');
+            if (toRotate) {
+                new TxtRotate(elements[i], JSON.parse(toRotate), period);
+            }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+        document.body.appendChild(css);
+    };
+</script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>  
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+      <!-- Modal Trigger -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+
+</body>
+</html>

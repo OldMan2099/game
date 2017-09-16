@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script src='file:///android_asset/app.js'></script>
+
+    <!--Links-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/materialize.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--scripts-->
+    <script type="text/javascript" src="js/application.js"></script>
+
+</head>
+<script>
+function OnStart(){
+  var ip = app.GetIPAddress();
+  //проверка на подключение к интернету
+  if (ip == '0.0.0.0') {
+    alert('Пожалуйста подключитесь к интернету.');
+    app.Exit();
+  }
+  //полноэкранный режим
+  app.SetScreenMode( "Game" )
+  app.SetOrientation( "Portait" );
+  app.SetOptions("ignoreErrors");
+}</script>
+<body onload="app.Start()">
+<!-- Скрипты -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+<!-- Конец скриптов -->
+
+<div class="center-align">
+<!--  Меню с кнопками -->
+    <div class="wrapper container">
+        <div class="content">
+    		<h2 class="twhite">Код 11</h2>
+
+    		<p><a class="btn-large waves-effect waves-light modal-trigger grey darken-2" href="#modal2" >Играть</a></p>
+    		<p><a href="#modal1" class="btn-large waves-effect waves-light grey darken-2 modal-trigger">О приложении</a></p>
+
+    		<p class="twhite"><small>Будет доступно на: <b>android</b>, <b>web</b></small></p>
+    	</div>
+    </div>
+<!-- Конец меню с кнопками -->
+
+    <!-- Модальное окно с авторами -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+
+          <h5>Дизайн</h5>
+          <p>Олег Чернов</p>
+
+          <h5>Сценарий</h5>
+          <p>Антон Фукалов</p>
+          <p>Егор Заостровцев</p>
+
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+        </div>
+      </div>
+	<!-- Конец окна с авторами -->
+  <!-- Окно с выбором игры -->
+  <div id="modal2" class="modal bottom-sheet">
+    <div class="modal-content">
+        <div class="row">
+              <div class="col s12">
+                <div class="card-panel teal">
+                  <span class="white-text"><h4>Демо</h4>
+                  <p>Показ возможностей</p><a href="history.html" class="btn waves-effect waves-light deep-purple darken-3 modal-trigger">Играть</a>
+                </div>
+              </div>
+            </div>
+        <div class="row">
+              <div class="col s12">
+                <div class="card-panel teal">
+                  <span class="white-text"><h4>Сценарий 2</h4><p>Опиисание сценария 2</p> 
+                  <a href="#modal1" class="btn waves-effect waves-light deep-purple darken-3 modal-trigger">играть</a>
+                </div>
+              </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Назад</a>
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Скрипты  -->
+<script type="text/javascript">$(document).ready(function(){$('.modal').modal();});</script>
+
+</body>
+</html>
